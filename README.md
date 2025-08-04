@@ -1,2 +1,3 @@
-# ai_php_export
-ai_php_export
+公司老的业务都使用的是php语言写的，并且部署在K8s集群中，想通过不修改基础镜像的形式对业务的php-status进行监控。
+在githup上搜索的了几个php_export都需要将export服务和php程序同时部署到一个镜像中，对我不太适应。
+于是让AI 按照 blackbox_exporter 的形式编写了一个类型的python脚本，自己做了一些简单的修改。
