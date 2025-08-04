@@ -20,7 +20,7 @@ scrape_configs:
         labels:
           app: "prometheus"
 
-# php-话费
+# 配置
   - job_name: '业务1'
     metrics_path: /probe
     static_configs:
@@ -40,3 +40,4 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: export_IP地址:8899
+
