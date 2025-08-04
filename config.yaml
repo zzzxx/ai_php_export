@@ -1,0 +1,5 @@
+scrape_interval: 15
+listen_port: 8899
+cache_ttl: 60
+max_cache_size: 100
+

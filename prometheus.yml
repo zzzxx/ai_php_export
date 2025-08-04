@@ -1,0 +1,42 @@
+#prometheus-3.3.1
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+        labels:
+          app: "prometheus"
+
+# php-话费
+  - job_name: '业务1'
+    metrics_path: /probe
+    static_configs:
+      - targets:
+        - 'https://域名1/php-status'
+        labels:
+          program: 自定义程序名称1
+      - targets:
+        - 'https://域名2/php-status'
+        labels:
+          program: 自定义程序名称2
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: export_IP地址:8899
